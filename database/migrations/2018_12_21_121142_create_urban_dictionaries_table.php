@@ -19,7 +19,7 @@ class CreateUrbanDictionariesTable extends Migration
             $table->uuid('guid')->unique();
             $table->string('slug')->unique();
             $table->string('word')->unique();
-            $table->json('metadata');
+            $table->text('metadata');
             $table->timestamps();
             $table->softDeletes();
 
