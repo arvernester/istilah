@@ -21,4 +21,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['namespace' => 'Service'], function () {
     Route::get('user/me', 'UserController@me');
     Route::apiResource('user', 'UserController');
+
+    Route::get('search', 'SearchController@search');
 });

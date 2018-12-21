@@ -2,8 +2,11 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use App\Models\Index;
+use App\User;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\ServiceProvider;
 
 class DatabaseServiceProvider extends ServiceProvider
 {
@@ -15,6 +18,14 @@ class DatabaseServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+
+        // observers
+        User::observe(\App\Observers\UserObserver::class);
+        Index::observe(\App\Observers\IndexObserver::class);
+
+        Relation::morphMap([
+            'user' => User::class,
+        ]);
     }
 
     /**

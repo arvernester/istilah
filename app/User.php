@@ -2,10 +2,11 @@
 
 namespace App;
 
+use App\Models\Index;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -42,17 +43,13 @@ class User extends Authenticatable
         'deleted_at',
     ];
 
-    public static function boot()
-    {
-        parent::boot();
-
-        static::creating(function (self $user) {
-            $user->guid = (string) Str::uuid();
-        });
-    }
-
     public function getGravatarAttribute(): string
     {
         return 'https://www.gravatar.com/avatar/' . md5($this->attributes['email']);
+    }
+
+    public function index(): MorphOne
+    {
+        return $this->morphOne(Index::class, 'indexable');
     }
 }
