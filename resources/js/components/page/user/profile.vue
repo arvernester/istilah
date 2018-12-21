@@ -3,13 +3,13 @@
     <div class="row profile-page">
       <div class="col-12">
         <div class="card">
-          <div class="card-body">
+          <div v-if="user.data" class="card-body">
             <div class="profile-header text-white">
               <div class="d-md-flex justify-content-around">
                 <div class="profile-info d-flex align-items-center">
-                  <img class="rounded-circle img-lg" src="https://via.placeholder.com/92x92" alt="profile image">
+                  <img class="rounded-circle img-lg" :src="user.data.gravatar" :alt="user.data.name">
                   <div class="wrapper pl-4">
-                    <p class="profile-user-name">Richard V.Welsh (UI/UX Designer)</p>
+                    <p class="profile-user-name">{{ user.data.name }}</p>
                     <div class="wrapper d-flex align-items-center">
                       <p class="profile-user-designation">User Experience Specialist</p>
                       <select id="example-css" name="rating" autocomplete="off">
@@ -290,6 +290,22 @@
 
 <script>
 export default {
-  name: 'UserProfile'
+  name: 'UserProfile',
+
+  data () {
+    return {
+      user: {}
+    }
+  },
+
+  created () {
+    this.getUser()
+  },
+
+  methods: {
+    async getUser () {
+      this.user = await axios.get(`/user/${this.$route.params.id}`)
+    }
+  }
 }
 </script>

@@ -2,13 +2,15 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -16,7 +18,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'guid',
+        'name',
+        'email',
+        'password',
     ];
 
     /**
@@ -25,6 +30,29 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
+
+    protected $appends = [
+        'gravatar',
+    ];
+
+    protected $dates = [
+        'deleted_at',
+    ];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function (self $user) {
+            $user->guid = (string) Str::uuid();
+        });
+    }
+
+    public function getGravatarAttribute(): string
+    {
+        return 'https://www.gravatar.com/avatar/' . md5($this->attributes['email']);
+    }
 }

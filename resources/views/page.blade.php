@@ -11,7 +11,8 @@
 
   <!-- plugins:css -->
   <link rel="stylesheet" href="{{ asset('vendors/iconfonts/simple-line-icon/css/simple-line-icons.css') }}">
-  <link rel="stylesheet" href="{{ asset('vendors/iconfonts/flag-icon-css/css/flag-icon.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('vendors/iconfonts/font-awesome/css/font-awesome.min.css') }}">
+  {{-- <link rel="stylesheet" href="{{ asset('vendors/iconfonts/flag-icon-css/css/flag-icon.min.css') }}"> --}}
   <link rel="stylesheet" href="{{ asset('vendors/css/vendor.bundle.base.css') }}">
   <link rel="stylesheet" href="{{ asset('vendors/css/vendor.bundle.addons.css') }}">
   <!-- endinject -->
@@ -48,12 +49,16 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                   @auth
-                  <a class="dropdown-item">
+                  <a href="#" class="dropdown-item">
                     <i class="icon-settings text-primary mr-2"></i>
                     @lang('Settings')
                   </a>
+                  <a href="#" class="dropdown-item">
+                    <i class="icon-key text-primary mr-2"></i>
+                    @lang('API Keys')
+                  </a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item">
+                  <a href="{{ route('logout') }}" class="dropdown-item">
                     <i class="icon-logout text-primary mr-2"></i>
                     @lang('Logout')
                   </a>
@@ -133,18 +138,31 @@
             </router-link>
 
             <li class="nav-item">
-                <a href="#" class="nav-link"><i class="link-icon icon-chemistry"></i><span class="menu-title">@lang('Applications')</span><i class="menu-arrow"></i></a>
-                <div class="submenu">
-                  <ul class="submenu-item">
-                    <li class="nav-item"><a class="nav-link" href="../../pages/forms/basic_elements.html">Basic Elements</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../pages/forms/advanced_elements.html">Advanced Elements</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../pages/forms/validation.html">Validation</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../pages/forms/wizard.html">Wizard</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../pages/forms/text_editor.html">Text Editor</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../pages/forms/code_editor.html">Code Editor</a></li>
-                  </ul>
-                </div>
-              </li>
+              <a href="#" class="nav-link"><i class="link-icon icon-chemistry"></i><span class="menu-title">@lang('Apps')</span><i class="menu-arrow"></i></a>
+              <div class="submenu">
+                <ul class="submenu-item">
+                  <li class="nav-item"><a class="nav-link" href="../../pages/forms/basic_elements.html">Basic Elements</a></li>
+                  <li class="nav-item"><a class="nav-link" href="../../pages/forms/advanced_elements.html">Advanced Elements</a></li>
+                  <li class="nav-item"><a class="nav-link" href="../../pages/forms/validation.html">Validation</a></li>
+                  <li class="nav-item"><a class="nav-link" href="../../pages/forms/wizard.html">Wizard</a></li>
+                  <li class="nav-item"><a class="nav-link" href="../../pages/forms/text_editor.html">Text Editor</a></li>
+                  <li class="nav-item"><a class="nav-link" href="../../pages/forms/code_editor.html">Code Editor</a></li>
+                </ul>
+              </div>
+            </li>
+
+            @auth
+            <li class="nav-item">
+              <a href="#" class="nav-link"><i class="link-icon icon-wrench"></i><span class="menu-title">@lang('Admin')</span><i class="menu-arrow"></i></a>
+              <div class="submenu">
+                <ul class="submenu-item">
+                  <li class="nav-item">
+                    <router-link :to="{name: 'user-index'}" class="nav-link">@lang('Users')</router-link>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            @endauth
           </ul>
         </div>
       </div>

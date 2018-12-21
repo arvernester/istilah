@@ -11,7 +11,9 @@ const routes = [
   // global search
   {path: '/search', name: 'search', component: require('./components/page/glossary/search').default},
 
-  {path: '/profile', name: 'user-profile', component: require('./components/page/user/profile').default},
+  // user
+  {path: '/profile/:id', name: 'user-profile', component: require('./components/page/user/profile').default},
+  {path: '/users', name: 'user-index', component: require('./components/page/user/index').default},
 
   {path: '/blog', name: 'blog-index', component: require('./components/page/blog/index').default},
 ]

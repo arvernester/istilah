@@ -30,7 +30,36 @@ Vue.component('notification', require('./components/partials/notification.vue').
 
  import router from './routes'
 
+ const mixins = {
+     data () {
+         return {
+             user: {}
+         }
+     },
+
+     created () {
+         this.auth()
+     },
+
+     methods: {
+         async auth () {
+             this.user = await axios.get('/user/me')
+         },
+
+         error (text) {
+            $.toast({
+                heading: 'Error',
+                text,
+                icon: 'error',
+                loader: false,
+                position: 'top-right'
+              })
+         }
+     }
+ }
+
 const app = new Vue({
+    mixins: [mixins],
     el: '#app',
     router,
 });
