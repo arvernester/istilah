@@ -15,6 +15,7 @@ class CreateIndicesTable extends Migration
     {
         Schema::create('indices', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id')->unsigned()->nullable();
             $table->uuid('guid')->unique();
             $table->string('indexable_type');
             $table->integer('indexable_id')->unsigned();
@@ -24,6 +25,10 @@ class CreateIndicesTable extends Migration
             $table->boolean('is_public')->default(false);
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users');
         });
     }
 
