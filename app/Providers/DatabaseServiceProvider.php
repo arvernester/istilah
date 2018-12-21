@@ -23,8 +23,13 @@ class DatabaseServiceProvider extends ServiceProvider
         User::observe(\App\Observers\UserObserver::class);
         Index::observe(\App\Observers\IndexObserver::class);
 
+        // urban dictionary observer
+        \App\Models\Urban\Dictionary::observe(\App\Observers\Urban\DictionaryObserver::class);
+        \App\Models\Urban\Description::observe(\App\Observers\Urban\DescriptionObserver::class);
+
         Relation::morphMap([
             'user' => User::class,
+            'urban' => \App\Models\Urban\Dictionary::class,
         ]);
     }
 

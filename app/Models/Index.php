@@ -20,7 +20,7 @@ class Index extends Model
         'is_public',
     ];
 
-    protected $cast = [
+    protected $casts = [
         'metadata' => 'json',
         'is_public' => 'boolean',
     ];

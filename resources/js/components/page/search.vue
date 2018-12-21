@@ -9,7 +9,9 @@
                 <form action="#">
                   <div class="form-group d-flex">
                     <input @keyup="search" v-model="keyword" type="text" class="form-control" placeholder="Search everything in istilah.co here..." value="urbanui">
-                    <button type="submit" class="btn btn-primary ml-3">Search</button>
+                    <button @click.prevent="search" type="submit" class="btn btn-primary ml-3">
+                      <i class="icon-magnifier"></i>
+                    </button>
                   </div>
                 </form>
               </div>

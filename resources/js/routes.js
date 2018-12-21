@@ -11,6 +11,9 @@ const routes = [
   // global search
   {path: '/search', name: 'search', component: require('./components/page/search').default},
 
+  // urban dictionary
+  {path: '/urban/:slug', name: 'urban-show', component: require('./components/page/urban/show').default},
+
   // user
   {path: '/user/:slug', name: 'user-show', component: require('./components/page/user/show').default},
   {path: '/users', name: 'user-index', component: require('./components/page/user/index').default},

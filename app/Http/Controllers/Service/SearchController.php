@@ -17,6 +17,7 @@ class SearchController extends Controller
 
         $indices = Index::where('title', 'LIKE', "%{$request->keyword}%")
             ->orWhere('description', 'LIKE', "%{$request->keyword}%")
+            ->whereIsPublic(true)
             ->with('indexable')
             ->paginate();
         $indices->appends($request->only('keyword'));

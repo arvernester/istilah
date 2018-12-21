@@ -25,7 +25,7 @@ class UserObserver
             'title' => $user->name,
             'description' => '',
             'is_public' => false,
-            'metadata' => '',
+            'metadata' => [],
         ]));
     }
 
