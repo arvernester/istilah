@@ -32,7 +32,7 @@
 
                 <div v-if="indices.data.data" v-for="index in indices.data.data" :key="index.guid" class="col-12 results">
                   <div class="pt-4 border-bottom">
-                    <router-link :to="{name: `${index.indexable_type}-show`, params:{guid: index.indexable.guid}}" class="d-block h4 mb-0">
+                    <router-link :to="{name: `${index.indexable_type}-show`, params:{slug: index.indexable.slug}}" class="d-block h4 mb-0">
                       {{ index.title }}
                     </router-link>
                     <router-link :to="{name: `${index.indexable_type}-show`, params:{slug: index.indexable.slug}}" class="page-url text-primary">

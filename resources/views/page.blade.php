@@ -74,10 +74,6 @@
                         @lang('Register')
                       </a>
                     <div class="dropdown-divider"></div>
-                    <router-link :to="{name: 'user-profile'}" class="dropdown-item">
-                        <i class="icon-user text-primary mr-2"></i>
-                        @lang('Profile')
-                    </router-link>
                   @endauth
                 </div>
               </li>

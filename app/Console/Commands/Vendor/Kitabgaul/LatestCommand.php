@@ -47,6 +47,7 @@ class LatestCommand extends Command
             $dictionary = Dictionary::firstOrNew(['word' => strtolower($body->word)])
                 ->fill([
                     'metadata' => [
+                        'source' => 'https://kitabgaul.com',
                         'description' => $body->definition,
                         'author' => [
                             'name' => $body->authorName,

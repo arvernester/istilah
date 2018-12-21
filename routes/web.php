@@ -22,5 +22,7 @@ Route::group(['namespace' => 'Service'], function () {
     Route::get('user/me', 'UserController@me');
     Route::apiResource('user', 'UserController');
 
+    Route::apiResource('urban/dictionary', 'Urban\DictionaryController');
+
     Route::get('search', 'SearchController@search');
 });

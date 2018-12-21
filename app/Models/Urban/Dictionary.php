@@ -34,6 +34,11 @@ class Dictionary extends Model
         'deleted_at',
     ];
 
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
     public function sluggable(): array
     {
         return [
