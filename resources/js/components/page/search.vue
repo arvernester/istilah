@@ -33,8 +33,8 @@
                     <router-link :to="{name: `${index.indexable_type}-show`, params:{guid: index.indexable.guid}}" class="d-block h4 mb-0">
                       {{ index.title }}
                     </router-link>
-                    <router-link :to="{name: `${index.indexable_type}-show`, params:{guid: index.indexable.guid}}" class="page-url text-primary">
-                      https://www.istilah.co/#/{{ index.indexable_type }}/{{ index.indexable.guid }}/
+                    <router-link :to="{name: `${index.indexable_type}-show`, params:{slug: index.indexable.slug}}" class="page-url text-primary">
+                      https://www.istilah.co/#/{{ index.indexable_type }}/{{ index.indexable.slug }}/
                     </router-link>
                     <p class="page-description mt-1 w-75 text-muted">
                       <span v-if="index.description">{{ index.description }}</span>

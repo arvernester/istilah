@@ -26,14 +26,14 @@
               <tr v-for="(user, index) in users.data.data" :key="user.id">
                 <td class="py-1"><img :src="user.gravatar" :alt="user.name"></td>
                 <td>
-                  <router-link :to="{name: 'user-profile', params:{id: user.id}}">{{ user.name }}</router-link>
+                  <router-link :to="{name: 'user-show', params: {slug: user.slug}}">{{ user.name }}</router-link>
                 </td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.created_at }}</td>
                 <td>{{ user.updated_at }}</td>
                 <td class="text-center">
                   <a href="#" class="btn btn-sm btn-link text-primary"><i class="fa fa-edit"></i></a>
-                  <a @click="destroy(user.id)" href="#" class="btn btn-sm btn-link text-danger"><i class="fa fa-trash"></i></a>
+                  <a @click="destroy(user.slug)" href="#" class="btn btn-sm btn-link text-danger"><i class="fa fa-trash"></i></a>
                 </td>
               </tr>
             </tbody>
@@ -61,8 +61,8 @@ export default {
   },
 
   methods: {
-    destroy (id) {
-      axios.delete(`/user/${id}`)
+    destroy (slug) {
+      axios.delete(`/user/${slug}`)
         .then(response => {
           this.getUsers()
         })

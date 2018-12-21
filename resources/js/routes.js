@@ -12,8 +12,7 @@ const routes = [
   {path: '/search', name: 'search', component: require('./components/page/search').default},
 
   // user
-  {path: '/profile/:id', name: 'user-profile', component: require('./components/page/user/profile').default},
-  {path: '/show/:guid', name: 'user-show', component: require('./components/page/user/profile').default},
+  {path: '/user/:slug', name: 'user-show', component: require('./components/page/user/show').default},
   {path: '/users', name: 'user-index', component: require('./components/page/user/index').default},
 
   {path: '/blog', name: 'blog-index', component: require('./components/page/blog/index').default},

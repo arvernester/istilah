@@ -304,7 +304,7 @@ export default {
 
   methods: {
     async getUser () {
-      this.user = await axios.get(`/user/${this.$route.params.id}`)
+      this.user = await axios.get(`/user/${this.$route.params.slug}`)
     }
   }
 }

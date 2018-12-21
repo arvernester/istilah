@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Models\Index;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -12,6 +13,7 @@ class User extends Authenticatable
 {
     use Notifiable;
     use SoftDeletes;
+    use Sluggable;
 
     /**
      * The attributes that are mass assignable.
@@ -20,6 +22,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'guid',
+        'slug',
         'name',
         'email',
         'password',
@@ -42,6 +45,18 @@ class User extends Authenticatable
     protected $dates = [
         'deleted_at',
     ];
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => ['source' => 'name'],
+        ];
+    }
 
     public function getGravatarAttribute(): string
     {
